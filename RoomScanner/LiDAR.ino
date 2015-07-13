@@ -1,13 +1,14 @@
 // Code which utilizes LiDAR measurement
 int zeroPin = A3; //analog, zero signal
 int returnPin = A1; //analog, return signal
-int syncPin = 13; //digital, sync signal
+int syncPin = 8; //digital, sync signal
 int previousSync = 0; //previously measured sync signal
 int previousMeasurement = 0; //previously measured
 
 int setupLIDAR()
 {
   pinMode(syncPin, INPUT);
+  return 0;
 }
 
 double takeMeasurement(int n)

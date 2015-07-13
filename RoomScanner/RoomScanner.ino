@@ -1,8 +1,9 @@
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(57600);
   setupLIDAR();
   setupMotor();
+  setTimeBase(256);
 }
 
 void loop(){
@@ -26,9 +27,12 @@ void spin(int dir){ //spins the motor. 0 - CCW, 1 - CW
 }
 
 // millimeters because android precision is not based on sig figs
-void outputPoint(double angle, double millimeters)
+void outputPoint(double angle, int millimeters)
 {
   Serial.print(angle);
   Serial.print(' ');
-  Serial.println(millimeters);
+  if(millimeters < 0.0)
+    Serial.println("OOR");
+  else
+    Serial.println(millimeters);
 }

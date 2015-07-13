@@ -4,15 +4,19 @@ int returnPin = A1; //analog, return signal
 int syncPin = 8; //digital, sync signal
 int previousSync = 0; //previously measured sync signal
 int previousMeasurement = 0; //previously measured
+int timebasePin = 10;
+int timebase = 512;
 
 int setupLIDAR()
 {
   pinMode(syncPin, INPUT);
+  pinMode(timebasePin, OUTPUT);
   return 0;
 }
 
 double takeMeasurement(int n)
  {   
+   analogWrite(timebasePin, timebase);
    while(!syncHighToDown());  // Waits for sync to go high to low
    
    int startMeasurement = millis();   
@@ -70,3 +74,10 @@ int syncHighToDown()
   int cur = getSync();
   return prev != 0 && cur == 0;
 }
+
+void setTimeBase(int out)
+{
+  timebase = out;
+}
+
+

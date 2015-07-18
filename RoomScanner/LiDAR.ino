@@ -5,7 +5,7 @@ int syncPin = 8; //digital, sync signal
 int previousSync = 0; //previously measured sync signal
 int previousMeasurement = 0; //previously measured
 int timebasePin = 10;
-int timebase = 512;
+int timebase = 100;
 
 int setupLIDAR()
 {
@@ -49,7 +49,7 @@ double takeMeasurement(int n)
        return -1.0;
      }
      
-     totalDistance += 18.22*((double)(maxRetTime - maxZeroTime))/(endMeasurement - startMeasurement);//- 1.493;
+     totalDistance += 9.11*((double)(maxRetTime - maxZeroTime))/(endMeasurement - startMeasurement);//- 1.493;
 
      startMeasurement = endMeasurement;
    }

@@ -80,4 +80,10 @@ void setTimeBase(int out)
   timebase = out;
 }
 
+int getTimeBase()
+{
+  return timebase;
+}
+
+
 

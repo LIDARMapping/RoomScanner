@@ -1,4 +1,6 @@
 double previous = 0.0;
+int angleStep = 10;
+int nMeasure = 80;
 
 void setup()
 {
@@ -6,25 +8,32 @@ void setup()
   setupLIDAR();
   setupMotor();
   setTimeBase(150);
+  delay(1000);
   Serial.println("Start!");
+  Serial.print(getTimeBase());
+  Serial.print(' ');
+  Serial.print(nMeasure);
+  Serial.print(' ');
+  Serial.println(angleStep);
 }
 
 void loop() {
   spin(0);
-  spin(1);
+  //spin(1);
+  Serial.println("End!");
 }
 
 void spin(int dir) { //spins the motor. 0 - CCW, 1 - CW
   if (dir == 0) {
-    for (int angle = 0; angle <= 1800; angle += 10) {
+    for (int angle = 0; angle <= 1800; angle += angleStep) {
       goToPosition(angle); //maps degree measure to microseconds, since it uses integer math we multiply everything by 10
-      outputPoint(angle / 10.0, takeMeasurement(80) * 1000);
+      outputPoint(angle / 10.0, takeMeasurement(nMeasure) * 1000);
     }
   }
   else if (dir == 1) {
-    for (int angle = 1800; angle >= 0; angle -= 10) {
-      goToPosition(angle); //maps degree measure to microseconds, since it uses integer math we multiply everything by 10
-      outputPoint(angle / 10.0, takeMeasurement(80) * 1000);
+    for (int angle = 1800; angle >= 0; angle -= angleStep) {
+      goToPosition(angle); //maps degree measur80e to microseconds, since it uses integer math we multiply everything by 10
+      outputPoint(angle / 10.0, takeMeasurement(nMeasure) * 1000);
     }
   }
 }

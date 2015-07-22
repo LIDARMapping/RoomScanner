@@ -11,17 +11,17 @@ int motorPos = 0; //angle at which the motor is at
 int setupMotor()
 {
   motor.attach(motorPin);
-  motor.writeMicroseconds(525); //sets the motor to proper position
+  motor.writeMicroseconds(650); //sets the motor to proper position
   delay(100);
   return 0;
 }
 
-// Tells motor to go to position 0-1800 (10x angle to move decimal point due to integer math)
+// Tells motor to go to position 0-3600 (10x angle to move decimal point)
 int goToPosition(int pos)
 {
-  pos = setLim(pos); //limits motor movement to 0 - 180 degrees 
+  pos = setLim(pos); //limits the angle to only 0 - 360 degrees
   motorPos = pos;
-  motor.writeMicroseconds(map(motorPos,0,1800,525,2260)); //maps angle to corresponding pulse width (determined experimentally) 
+  motor.writeMicroseconds(map(motorPos,0,3600,650,1450)); //maps angle to corresponding pulse width 
   delay(spinDelay);
   return motorPos;
 }
@@ -31,8 +31,8 @@ int setLim(int pos){
   if(pos < 0){
     return 0;  
   }
-  else if(pos > 1800){
-    return 1800;  
+  else if(pos > 3600){
+    return 3600;  
   }
   else{
     return pos;

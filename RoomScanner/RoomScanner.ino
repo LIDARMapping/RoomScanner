@@ -1,6 +1,6 @@
 double previous = 0.0;
 int angleStep = 10;
-int nMeasure = 80;
+int nMeasure = 10;
 
 void setup()
 {
@@ -18,20 +18,20 @@ void setup()
 }
 
 void loop() {
-  spin(0);
+  spin(0);525
   //spin(1);
   Serial.println("End!");
 }
 
 void spin(int dir) { //spins the motor. 0 - CCW, 1 - CW
   if (dir == 0) {
-    for (int angle = 0; angle <= 1800; angle += angleStep) {
+    for (int angle = 0; angle <= 3600; angle += angleStep) {
       goToPosition(angle); //maps degree measure to microseconds, since it uses integer math we multiply everything by 10
       outputPoint(angle / 10.0, takeMeasurement(nMeasure) * 1000);
     }
   }
   else if (dir == 1) {
-    for (int angle = 1800; angle >= 0; angle -= angleStep) {
+    for (int angle = 3600; angle >= 0; angle -= angleStep) {
       goToPosition(angle); //maps degree measur80e to microseconds, since it uses integer math we multiply everything by 10
       outputPoint(angle / 10.0, takeMeasurement(nMeasure) * 1000);
     }

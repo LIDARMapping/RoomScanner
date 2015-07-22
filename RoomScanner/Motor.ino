@@ -16,12 +16,12 @@ int setupMotor()
   return 0;
 }
 
-// Tells motor to go to position 0-1800 (10x angle to move decimal point)
+// Tells motor to go to position 0-1800 (10x angle to move decimal point due to integer math)
 int goToPosition(int pos)
 {
-  pos = setLim(pos);  
+  pos = setLim(pos); //limits motor movement to 0 - 180 degrees 
   motorPos = pos;
-  motor.writeMicroseconds(map(motorPos,0,1800,525,2260)); 
+  motor.writeMicroseconds(map(motorPos,0,1800,525,2260)); //maps angle to corresponding pulse width (determined experimentally) 
   delay(spinDelay);
   return motorPos;
 }
